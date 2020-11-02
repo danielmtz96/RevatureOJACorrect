@@ -1,0 +1,5 @@
+package com.app.jdbc.model;
+
+public class Player {
+
+}

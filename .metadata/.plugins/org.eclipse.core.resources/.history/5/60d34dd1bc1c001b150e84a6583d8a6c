@@ -1,0 +1,9 @@
+package com.app.jdbc.model;
+
+public class Player {
+	private int id;
+	private String name;
+	private String teamName;
+	private long contact;
+	private String gender;
+}

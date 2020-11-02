@@ -1,0 +1,54 @@
+package com.app.jdbc.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.app.jdbc.dao.PlayerDAO;
+import com.app.jdbc.dbutil.PostgreSqlConnection;
+import com.app.jdbc.exception.BusinessException;
+import com.app.jdbc.model.Player;
+
+public class PlayerDAOImpl implements PlayerDAO {
+
+	public int createPlayer(Player player) throws BusinessException {
+		int c = 0;
+		try(Connection connection = PostgreSqlConnection.getConnection()){
+			String sql = "INSERT INTO roc_revature.player" + 
+		                 "(id, name, age, gender, teamname, contact)" + 
+		                 "VALUES(?, ?, ?, ?, ?, ?) "; // SQL injection
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, player.getId());
+			preparedStatement.setString(2, player.getName());
+			preparedStatement.setInt(3, player.getAge());
+			preparedStatement.setString(4, player.getGender());
+			preparedStatement.setString(5,  player.getTeamName());
+			preparedStatement.setLong(6, player.getContact());
+			
+			// execute note - DML
+			c = preparedStatement.executeUpdate();
+			
+		} catch(ClassNotFoundException | SQLException e) {
+			System.out.println(e);
+			throw new BusinessException("Internal error occurred. Kindly contact SYSADMIN.");
+		}
+		return c;
+	}
+
+	public int updatePlayerContact(int id, long newContact) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void deletePlayer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Player getPlayerById(int id) throws BusinessException {
+		Player player = null;
+		Connection connection = PostgreSqlConnection.getConnection();
+		return null;
+	}
+	
+}

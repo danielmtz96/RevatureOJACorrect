@@ -1,0 +1,68 @@
+package com.app.jdbc.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.app.jdbc.dao.PlayerDAO;
+import com.app.jdbc.dbutil.PostgreSqlConnection;
+import com.app.jdbc.exception.BusinessException;
+import com.app.jdbc.model.Player;
+
+public class PlayerDAOImpl implements PlayerDAO {
+
+	public int createPlayer(Player player) throws BusinessException {
+		int c = 0;
+		try(Connection connection = PostgreSqlConnection.getConnection()){
+			String sql = PlayerQueries.INSERTPLAYER;
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, player.getId());
+			preparedStatement.setString(2, player.getName());
+			preparedStatement.setInt(3, player.getAge());
+			preparedStatement.setString(4, player.getGender());
+			preparedStatement.setString(5,  player.getTeamName());
+			preparedStatement.setLong(6, player.getContact());
+			
+			// execute note - DML
+			c = preparedStatement.executeUpdate();
+			
+		} catch(ClassNotFoundException | SQLException e) {
+			System.out.println(e);
+			throw new BusinessException("Internal error occurred. Kindly contact SYSADMIN.");
+		}
+		return c;
+	}
+
+	public int updatePlayerContact(int id, long newContact) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void deletePlayer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Player getPlayerById(int id) throws BusinessException {
+		Player player = null;
+		try {
+			Connection connection = PostgreSqlConnection.getConnection();
+			String sql = "select name, age, gender, teamname, contact from roc_revature.player where id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1,  id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				player = new Player(id, resultSet.getString("name"), resultSet.getString("teamname"),
+						resultSet.getInt("age"), resultSet.getLong("contact"), resultSet.getString("gender"));
+			} else {
+				throw new BusinessException("Invalid ID!!! No matching records found for the ID = " + id);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println(e);
+			throw new BusinessException("Internal error occurred. Kindly contact SYSADMIN.");
+		}
+		return null;
+	}
+	
+}

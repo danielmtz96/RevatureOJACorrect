@@ -1,0 +1,8 @@
+package com.app.jdbc.dao.impl;
+
+import com.app.jdbc.dao.PlayerDAO;
+import com.app.jdbc.model.Player;
+
+public class PlayerDAOImpl implements PlayerDAO {
+	
+}

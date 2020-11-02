@@ -1,0 +1,17 @@
+package com.app.jdbc.dbutil;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class PostgreSqlConnection {
+	
+	private static Connection connection;
+	
+	public static Connection getConnection()  throws ClassNotFoundException {
+		//Step 1- Load/register the Driver
+		Class.forName("org.postgresql.Driver");
+
+		return connection;
+	}
+	
+}

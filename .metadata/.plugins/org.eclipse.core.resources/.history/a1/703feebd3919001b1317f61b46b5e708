@@ -1,0 +1,11 @@
+package com.app;
+
+public class HelloJBDC {
+	// Step 1 - load/register the driver
+	try {
+		Class.forName("org.postgresql.Driver");
+		System.out.println("Driver Loaded successfully!");
+	} catch (ClassNotFoundException e) {
+		System.out.println(e);
+	}
+}

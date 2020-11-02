@@ -1,0 +1,13 @@
+package com.app.jdbc;
+
+import com.app.jdbc.model.Player;
+
+public class JDBCDemoMain {
+	public static void main(String[] args) {
+		Player player = new Player(105, "Dinesh", "Bulls", 5123467890, "M");
+	}
+	
+	PlayerDAO playerDAO = new PlayerDAOImpl();
+	
+	if()
+}

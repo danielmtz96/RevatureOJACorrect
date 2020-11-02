@@ -1,0 +1,17 @@
+package com.app.jdbc;
+
+import com.app.jdbc.dao.PlayerDAO;
+import com.app.jdbc.dao.impl.PlayerDAOImpl;
+import com.app.jdbc.model.Player;
+
+public class JDBCDemoMain {
+	public static void main(String[] args) {
+		Player player = new Player(105, "Dinesh", "Bulls", 5123467890, "M");
+	}
+	
+	PlayerDAO playerDAO = new PlayerDAOImpl();
+	
+	if(playerDAO.createPlayer(player) > 0) {
+		System.out.println("Player created n DB with below details.");
+	}
+}

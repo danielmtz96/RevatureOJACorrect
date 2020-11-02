@@ -1,0 +1,7 @@
+package com.app.jdbc;
+
+public class JDBCDemoMain {
+	public static void main(String[] args) {
+		Player player = new Player(105, "Dinesh", "Bulls", 5123467890, "M");
+	}
+}

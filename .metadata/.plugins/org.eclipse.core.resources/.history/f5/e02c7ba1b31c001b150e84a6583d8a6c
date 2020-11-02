@@ -1,0 +1,30 @@
+package com.app.main;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class HelloJDBC {
+	public static void main(String[] args) {
+		System.out.println("Hello Maven!");
+		
+	    Connection connection = null;  // want to use this in try, finally blocks
+	    
+		try {
+			//Step 1- Load/register the Driver
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Driver loaded successfully");
+			
+			String url;
+			String username = "postgres";
+			String password = "loldontbesmart";
+			// Step 2 - open connection(url, username, password)
+			connection = DriverManager.getConnection(url, username, password);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		 
+	}
+}

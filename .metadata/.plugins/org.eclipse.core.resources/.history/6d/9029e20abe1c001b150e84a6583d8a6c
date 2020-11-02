@@ -1,0 +1,6 @@
+package com.app.jdbc.dao;
+
+public interface PlayerDAO {
+	public int createPlayer(Player player);
+	
+}

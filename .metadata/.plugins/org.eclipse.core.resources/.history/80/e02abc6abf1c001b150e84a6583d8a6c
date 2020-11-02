@@ -1,0 +1,36 @@
+package com.app.jdbc.dao.impl;
+
+import java.sql.Connection;
+
+import com.app.jdbc.dao.PlayerDAO;
+import com.app.jdbc.dbutil.PostgreSqlConnection;
+import com.app.jdbc.model.Player;
+
+public class PlayerDAOImpl implements PlayerDAO {
+
+	public int createPlayer(Player player) {
+		int c = 0;
+		try(Connection connection = PostgreSqlConnection.getConnection()){
+			
+		} catch(ClassNotFoundException | Exception e) {
+		
+		}
+		return 0;
+	}
+
+	public int updatePlayerContact(int id, long newContact) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void deletePlayer(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Player getPlayerById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

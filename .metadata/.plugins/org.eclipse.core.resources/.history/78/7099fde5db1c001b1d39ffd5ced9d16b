@@ -1,0 +1,7 @@
+package com.app.jdbc.dao.impl;
+
+public class PlayerQueries {
+	
+	public static final String INSERTPLAYER = "INSERT INTO roc_revature.player(id, name, age, gender, teamname, contact) + "
+			+ VALUES(?, ?, ?, ?, ?, ?)  
+}
